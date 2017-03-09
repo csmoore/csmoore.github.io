@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UC Countdown Sample</title>
+</head>
+<div id="countdown"></div>
+<script type="text/javascript">
+
+    CountDownTimer('07/08/2017 08:30:00 AM', 'countdown');
+    
+    // Used from:
+    // http://stackoverflow.com/questions/9335140/how-to-countdown-to-a-date
+
+    function CountDownTimer(dt, id)
+    {
+        var end = new Date(dt);
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var duration = end - now;
+            if (duration < 0) {
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = 'EXPIRED!';
+                return;
+            }
+            
+            var days = Math.floor(duration / _day);
+            var hours = Math.floor((duration % _day) / _hour);
+            var minutes = Math.floor((duration % _hour) / _minute);
+            var seconds = Math.floor((duration % _minute) / _second);
+
+            document.getElementById(id).innerHTML = days + ' Days ';
+            document.getElementById(id).innerHTML += hours + ' Hours ';
+            document.getElementById(id).innerHTML += minutes + ' Mins ';
+            document.getElementById(id).innerHTML += seconds + ' Secs';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
+
+</script>
+
+
+</body>
+</html>
